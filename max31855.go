@@ -41,9 +41,8 @@ func New(p spi.Port) (*Dev, error) {
 	return d, nil
 }
 
-// GetTemp - Gets the current temperature in nano Kelvins
-// Can easily be converted to more useful units with .Celcius(), .Farenheit(), etc.
-func (d *Dev) GetTemp() (Temperature, error) {
+// GetTemp - Gets the current temperature in Celcius
+func (d *Dev) GetTemp() (float64, error) {
 	raw := make([]byte, 4)
 
 	if err := d.c.Tx(nil, raw); err != nil {
@@ -62,7 +61,7 @@ func (d *Dev) GetTemp() (Temperature, error) {
 		return 0, ErrShortToVcc
 	}
 
-	v := int32(binary.BigEndian.Uint32(raw))
+	v := binary.BigEndian.Uint32(raw)
 
 	if v&0x07 != 0 {
 		return 0, ErrReadingValue
@@ -70,7 +69,7 @@ func (d *Dev) GetTemp() (Temperature, error) {
 
 	v >>= 18
 
-	t := ZeroCelsius + Temperature(v/4)*Celsius
+	t := float64(v) * 0.35
 
 	return t, nil
 }
