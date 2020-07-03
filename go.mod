@@ -1,4 +1,4 @@
-module github.com/LukeChannings/max31855
+module github.com/lukechannings/max31855
 
 go 1.14
 
