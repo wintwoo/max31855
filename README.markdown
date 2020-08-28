@@ -38,7 +38,7 @@ func main() {
 		fmt.Println(err.Error())
 	}
 
-	fmt.Printf("Current temperature: %f ℃", temp.Celsius())
+	fmt.Printf("Current temperature: %v °C (%v °F)", temp.Thermocouple.Celsius(), temp.Thermocouple.Fahrenheit())
 }
 
 ```
