@@ -4,8 +4,8 @@ import (
 	"errors"
 	"fmt"
 
-	"periph.io/x/periph/conn/physic"
-	"periph.io/x/periph/conn/spi"
+	"periph.io/x/conn/v3/physic"
+	"periph.io/x/conn/v3/spi"
 )
 
 // ErrOpenCircuit - Thermocouple is not connected
